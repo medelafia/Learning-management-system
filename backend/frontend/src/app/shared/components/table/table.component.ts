@@ -15,7 +15,7 @@ import { EntityAttribute } from '@core/models/entity-attribute.model';
 import { Page } from '@core/models/page.model';
 import { Base } from '@core/models/base.model';
 import { TableSelect } from '@core/models/table-select.model';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { SelectionRequiredValidator } from '@shared/utils/selection-required-validator';
 import { TableData } from '@core/models/table-data.model';
 
@@ -100,7 +100,7 @@ export class TableComponent<T extends Base> implements OnInit {
   columnKeys: string[];
 
   select: TableSelect;
-  selectForm: FormControl = new FormControl(null, [SelectionRequiredValidator]);
+  selectForm: UntypedFormControl = new UntypedFormControl(null, [SelectionRequiredValidator]);
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

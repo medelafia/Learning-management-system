@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   ControlContainer,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -20,8 +20,8 @@ export class DialogFormComponent<T extends Base> implements OnInit {
   name: string;
   attributes: EntityAttribute[];
 
-  form: FormGroup = new FormGroup({
-    id: new FormControl(null),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    id: new UntypedFormControl(null),
   });
 
   ids: any = {};
@@ -40,7 +40,7 @@ export class DialogFormComponent<T extends Base> implements OnInit {
     );
 
     this.attributes.forEach((attribute) => {
-      const formControl: FormControl = new FormControl(null);
+      const formControl: UntypedFormControl = new UntypedFormControl(null);
 
       attribute.required && formControl.addValidators([Validators.required]);
       attribute.type === 'select' &&
