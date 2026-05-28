@@ -4,3 +4,7 @@ misc/
 *.jdl
 generated/
 TODO.md
+frontend/.nginx
+frontend/node_modules
+frontend/package-lock.json
+env-variables/
