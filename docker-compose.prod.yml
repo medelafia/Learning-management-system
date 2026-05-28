@@ -11,14 +11,14 @@ services:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
       interval: 25s
       retries: 5
-      start_period: 20s
       timeout: 10s
     volumes:
       - auth-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: lms-auth
-
+    networks:
+      - microservice-network
   database-faculty:
     image: mysql:8.0.30-debian
     ports:
@@ -27,14 +27,14 @@ services:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
       interval: 25s
       retries: 5
-      start_period: 20s
       timeout: 10s
     volumes:
       - faculty-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: lms-faculty
-
+    networks:
+      - microservice-network
   database-subject:
     image: mysql:8.0.30-debian
     ports:
@@ -43,14 +43,14 @@ services:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
       interval: 25s
       retries: 5
-      start_period: 20s
       timeout: 10s
     volumes:
       - subject-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: lms-subject
-
+    networks:
+      - microservice-network
   database-exam:
     image: mysql:8.0.30-debian
     ports:
@@ -61,49 +61,43 @@ services:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
       interval: 25s
       retries: 5
-      start_period: 20s
       timeout: 10s
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: lms-exam
-
+    networks:
+      - microservice-network
   backend-config-server:
-    build:
-      context: ./backend/config-server
-      dockerfile: Dockerfile
+    build: ./config-server
     ports:
       - 8888:8888
     healthcheck:
       test: wget --spider --quiet 'http://localhost:8888/actuator/health/' || exit 1
       interval: 25s
       retries: 5
-      start_period: 20s
       timeout: 10s
     environment:
       SPRING_PROFILES_ACTIVE: prod, native
-
+    networks:
+      - microservice-network
   backend-discovery-server:
-    build:
-      context: ./backend/discovery-server
-      dockerfile: Dockerfile
+    build: ./discovery-server
     ports:
       - 8761:8761
     healthcheck:
       test: wget --spider --quiet 'http://localhost:8761/actuator/health/' || exit 1
       interval: 25s
       retries: 5
-      start_period: 20s
       timeout: 10s
     depends_on:
       backend-config-server:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
-
+    networks:
+      - microservice-network
   backend-api-gateway:
-    build:
-      context: ./backend/api-gateway
-      dockerfile: Dockerfile
+    build: ./api-gateway
     ports:
       - 8080:8080
     depends_on:
@@ -111,10 +105,11 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
-
+    networks:
+      - microservice-network
   backend-auth-service:
     build:
-      context: ./backend/auth-service
+      context: ./auth-service
       dockerfile: Dockerfile
     ports:
       - 8081:8081
@@ -125,10 +120,11 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
-
+    networks:
+      - microservice-network
   backend-faculty-service:
     build:
-      context: ./backend/faculty-service
+      context: ./faculty-service
       dockerfile: Dockerfile
     ports:
       - 8082:8082
@@ -139,10 +135,11 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
-
+    networks:
+      - microservice-network
   backend-subject-service:
     build:
-      context: ./backend/subject-service
+      context: ./subject-service
       dockerfile: Dockerfile
     ports:
       - 8083:8083
@@ -153,10 +150,11 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
-
+    networks:
+      - microservice-network
   backend-exam-service:
     build:
-      context: ./backend/exam-service
+      context: ./exam-service
       dockerfile: Dockerfile
     ports:
       - 8084:8084
@@ -167,18 +165,23 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
+    networks:
+      - microservice-network
 
-  frontend-app:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    environment:
-      PRODUCTION: true
+  #frontend-app:
+  #  build:
+  #    context: ./frontend
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - 80:80
+  #  environment:
+  #    PRODUCTION: true
 
 volumes:
   auth-data:
   faculty-data:
   subject-data:
   exam-data:
+networks:
+  microservice-network:
+    driver: bridge
