@@ -1,0 +1,95 @@
+.hero {
+  height: 85vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle at top, #1e3c72, #2a5298);
+  color: white;
+  overflow: hidden;
+}
+
+/* NAV */
+.nav {
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 40px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* HERO CONTENT */
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  z-index: 2;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+/* BUTTONS */
+.actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* DECORATION */
+.blur-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.one {
+  width: 300px;
+  height: 300px;
+  background: #ff6b6b;
+  top: -50px;
+  left: -50px;
+}
+
+.two {
+  width: 400px;
+  height: 400px;
+  background: #4facfe;
+  bottom: -100px;
+  right: -100px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

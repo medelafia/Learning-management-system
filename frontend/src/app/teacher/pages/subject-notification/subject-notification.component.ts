@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { BaseComponent } from '@shared/directives/base-component';
 import { EntityAttribute } from '@core/models/entity-attribute.model';
 import { SubjectNotification } from '@core/models/subject-notification.model';

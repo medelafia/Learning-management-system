@@ -1,0 +1,16 @@
+
+.gradient-bg {
+background: rgb(0,71,171);
+background: linear-gradient(159deg, rgba(0,71,171,1) 0%, rgba(28,169,201,1) 100%);
+}
+
+.gradient-bg-secondary {
+background: linear-gradient(225deg, rgba(250, 252, 255, 1), rgba(199, 227, 240, 1));
+-webkit-background: linear-gradient(225deg, rgba(250, 252, 255, 1), rgba(199, 227, 240, 1));
+-moz-background: linear-gradient(225deg, rgba(250, 252, 255, 1), rgba(199, 227, 240, 1));
+}
+.gradient-bg-red {
+background: linear-gradient(90deg, rgba(249, 36, 54, 1), rgba(255, 148, 148, 1));
+-webkit-background: linear-gradient(90deg, rgba(249, 36, 54, 1), rgba(255, 148, 148, 1));
+-moz-background: linear-gradient(90deg, rgba(249, 36, 54, 1), rgba(255, 148, 148, 1));
+}

@@ -1,5 +1,5 @@
 import { Directive, ViewChild } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { Base } from '@core/models/base.model';
 import { Page } from '@core/models/page.model';
 import { EntityAttribute } from '@core/models/entity-attribute.model';

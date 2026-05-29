@@ -8,7 +8,7 @@
   </div>
 
   <div class="lg:float-right">
-    <mat-form-field appearance="standard" class="w-96 text-sm">
+    <mat-form-field appearance="outline" class="w-96 text-sm">
       <input
         #input
         matInput
@@ -50,38 +50,48 @@
 >
   <div class="md:columns-2 md:h-20 h-36">
     <div class="md:h-full flex items-center space-x-2">
-      <mat-form-field appearance="standard">
+      <div class="flex items-center gap-3 w-full max-w-xl px-2 py-2
+              rounded-2xl bg-slate-100 border border-slate-200
+              focus-within:ring-2 focus-within:ring-blue-500
+              transition-all"
+      >
+        <mat-icon class="text-slate-400">search</mat-icon>
+
         <input
           [(ngModel)]="searchTerm"
           matInput
-          placeholder="Enter search term"
+          placeholder="Search subjects..."
+          class="flex-1 bg-transparent outline-none text-slate-700
+                placeholder:text-slate-400"
         />
-      </mat-form-field>
-      <button mat-flat-button color="primary" (click)="makeSearch()">
-        Search
+      </div>
+      <button mat-flat-button (click)="makeSearch()" class="bg-transparent p-0">
+        <mat-icon >search</mat-icon>
       </button>
     </div>
     <div class="md:h-full md:float-right flex items-center space-x-2">
       <button
         *ngIf="!disabledCreate"
         mat-flat-button
-        color="primary"
+        class="gradient-bg text-white"
         (click)="emitCreate()"
       >
-        Create new
+        <mat-icon>save</mat-icon>
+        Create
       </button>
       <button
         *ngIf="!disabledSelect"
         mat-flat-button
-        [color]="selectButtonColor"
+        class="gradient-bg-red text-white"
         (click)="emitSelect()"
       >
-        {{ selectButtonText }}
+        <mat-icon>delete</mat-icon>
+        Delete
       </button>
     </div>
   </div>
 
-  <div class="mat-elevation-z2 block w-full overflow-x-auto">
+  <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-4">
     <table
       mat-table
       [dataSource]="dataSource"
@@ -173,7 +183,7 @@
         <td
           class="mat-cell"
           [attr.colspan]="columnKeys.length"
-          class="break-normal table-cell w-auto whitespace-nowrap overflow-hidden align-middle"
+          class="break-normal table-cell w-auto whitespace-nowrap overflow-hidden align-middle flex justify-center py-5"
         >
           No data
         </td>
@@ -187,6 +197,7 @@
   [pageSize]="defaultPageSize"
   (page)="makeRequest()"
   showFirstLastButtons
+  class="bg-transparent"
 >
 </mat-paginator>
 

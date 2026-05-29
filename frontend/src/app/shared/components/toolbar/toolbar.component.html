@@ -1,16 +1,20 @@
-<mat-toolbar color="">
-  <mat-toolbar-row class="mat-elevation-z8 h-28 flex">
-    <a routerLink="/" class="m-auto">
-      <img src="assets/logo.png" alt="University of Toronto" width="200px"/>
+<mat-toolbar class="">
+  <mat-toolbar-row class="bg-blue-500 flex px-32 justify-between items-between text-sm text-white py-0">
+    <div class="flex items-center"><mat-icon class="me-2">mail</mat-icon>Email : {{"abdelmalek.essadi@uae.ma"}}</div>
+    <div class="flex items-center"><mat-icon class="me-2">phone</mat-icon>Phone : +212-658-045-721</div>
+    <div class="flex items-center"><mat-icon class="me-2">position</mat-icon>Addresse : Av. Sebta, Tétouan 93002</div>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="bg-white flex border-b py-10 px-32 justify-between text-md">
+    <a routerLink="/home">
+      <img src="assets/logo.png" alt="University of Toronto" width="150px"/>
     </a>
-    <div class="m-auto">
-      <a mat-button routerLink="/about" class="md:text-lg">About</a>
-      <a mat-button routerLink="/faculties" class="md:text-lg">Faculties</a>
+    <div>
+      <a mat-button routerLink="/about">About</a>
+      <a mat-button routerLink="/faculties">Faculties</a>
       <a
         *ngIf="authService.validateRoles(['ROLE_STUDENT'], 'any')"
         mat-button
         routerLink="/student-services"
-        class="md:text-lg"
       >
         Student services
       </a>
@@ -18,7 +22,6 @@
         *ngIf="authService.validateRoles(['ROLE_TEACHER'], 'any')"
         mat-button
         routerLink="/teacher-services"
-        class="md:text-lg"
       >
         Teacher services
       </a>
@@ -26,25 +29,28 @@
         *ngIf="authService.validateRoles(['ROLE_ADMIN'], 'any')"
         mat-button
         routerLink="/admin-panel"
-        class="md:text-lg"
         >Admin panel</a
       >
-      <a
-        *ngIf="!authService.loggedIn()"
-        routerLink="/auth/login"
-        mat-button
-        class="md:text-lg"
-      >
-        Login
-      </a>
-      <a
-        *ngIf="authService.loggedIn()"
-        (click)="authService.logout()"
-        mat-button
-        class="md:text-lg"
-      >
-        Logout
-      </a>
     </div>
+    <a
+      *ngIf="!authService.loggedIn()"
+      routerLink="/auth/login"
+      mat-button
+      matButton="filled"
+      class="bg-blue-500 text-white"
+      matFab="rounded"
+    >
+      <mat-icon>login</mat-icon>
+      Login
+    </a>
+    <a
+      *ngIf="authService.loggedIn()"
+      (click)="authService.logout()"
+      mat-button
+    >
+      <mat-icon>logout</mat-icon>
+      Logout
+    </a>
   </mat-toolbar-row>
+
 </mat-toolbar>

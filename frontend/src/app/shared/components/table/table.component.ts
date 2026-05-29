@@ -7,9 +7,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource as MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator as MatPaginator } from '@angular/material/paginator';
 import { PageRequest } from '@core/models/page-request.model';
 import { EntityAttribute } from '@core/models/entity-attribute.model';
 import { Page } from '@core/models/page.model';
@@ -22,7 +22,7 @@ import { TableData } from '@core/models/table-data.model';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  styleUrls: ['./table.component.scss' , '../../../app.component.scss'],
 })
 export class TableComponent<T extends Base> implements OnInit {
   @Input()

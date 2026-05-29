@@ -1,11 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {
-  ControlContainer,
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef as MatDialogRef, MAT_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Base } from '@core/models/base.model';
 import { DialogData } from '@core/models/dialog-data.model';
 import { EntityAttribute } from '@core/models/entity-attribute.model';

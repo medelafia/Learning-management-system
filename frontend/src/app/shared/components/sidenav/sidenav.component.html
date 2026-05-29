@@ -1,10 +1,15 @@
-<mat-toolbar class="bg-stone-700 text-white">
+<mat-toolbar class="gradient-bg text-white">
+
   <button mat-icon-button class="mr-2 sm:mr-4" (click)="snav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   <h1 class="text-lg sm:text-xl">{{ text }}</h1>
   <span class="flex-auto"></span>
-  <p class="text-sm sm:text-base">{{ getUsername() }}</p>
+  <div class="flex items-center">
+      <mat-icon class="text-white-500 me-1">account_circle</mat-icon>
+      <p class="text-sm sm:text-base">{{ getUsername() }}</p>
+  </div>
+
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav
@@ -23,7 +28,8 @@
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class="h-[100vh] p-5">
+  <mat-sidenav-content class="h-[100vh] p-5 bg-slate-50">
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

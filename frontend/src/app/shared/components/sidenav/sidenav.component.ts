@@ -6,7 +6,7 @@ import { AuthService } from '@core/services/auth.service';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
+  styleUrls: ['./sidenav.component.scss' ,  '../../../app.component.scss'],
 })
 export class SidenavComponent implements OnDestroy {
   @Input()

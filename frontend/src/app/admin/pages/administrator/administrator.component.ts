@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import {MatDialog } from '@angular/material/dialog';
 import { EntityAttribute } from '@core/models/entity-attribute.model';
 import { Administrator } from '@core/models/administrator.model';
 import { getUserDisplay } from '@core/models/user.model';
