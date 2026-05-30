@@ -13,7 +13,7 @@ import { SelectionRequiredValidator } from '@shared/utils/selection-required-val
 @Component({
   selector: 'app-dialog-form',
   templateUrl: './dialog-form.component.html',
-  styleUrls: ['./dialog-form.component.scss'],
+  styleUrls: ['./dialog-form.component.scss' , '../../../app.component.scss'],
 })
 export class DialogFormComponent<T extends Base> implements OnInit {
   name: string;
@@ -74,7 +74,7 @@ export class DialogFormComponent<T extends Base> implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dialogRef.updateSize('100vw');
+    this.dialogRef.updateSize('50vw');
   }
 
   getDisplay(value: any) {

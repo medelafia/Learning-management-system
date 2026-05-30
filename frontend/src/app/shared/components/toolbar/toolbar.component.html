@@ -1,4 +1,4 @@
-<mat-toolbar class="mb-0">
+<mat-toolbar class="mb-0 sticky top-0 z-[1000]">
   <mat-toolbar-row class="bg-blue-500 flex px-32 justify-between items-between text-sm text-white py-0">
     <div class="flex items-center"><mat-icon class="me-2">mail</mat-icon>Email : {{"abdelmalek.essadi@uae.ma"}}</div>
     <div class="flex items-center"><mat-icon class="me-2">phone</mat-icon>Phone : +212-658-045-721</div>
@@ -9,27 +9,35 @@
       <img src="assets/logo.png" alt="University of Toronto" width="150px"/>
     </a>
     <div>
-      <a mat-button routerLink="/about">About</a>
-      <a mat-button routerLink="/faculties">Faculties</a>
+      <a mat-button routerLink="/home" class="me-2"><mat-icon>house</mat-icon>home</a>
+      <a mat-button routerLink="/about" class="me-2"><mat-icon>details</mat-icon>About</a>
+      <a mat-button routerLink="/faculties" class="me-2"><mat-icon>school</mat-icon>Faculties</a>
       <a
         *ngIf="authService.validateRoles(['ROLE_STUDENT'], 'any')"
         mat-button
         routerLink="/student-services"
+        class="me-2"
       >
+        <mat-icon>student</mat-icon>
         Student services
       </a>
       <a
         *ngIf="authService.validateRoles(['ROLE_TEACHER'], 'any')"
         mat-button
         routerLink="/teacher-services"
+        class="me-2"
       >
+        <mat-icon>note</mat-icon>
         Teacher services
       </a>
       <a
         *ngIf="authService.validateRoles(['ROLE_ADMIN'], 'any')"
         mat-button
         routerLink="/admin-panel"
-        >Admin panel</a
+        class="me-2"
+        >
+        <mat-icon>admin</mat-icon>
+        Admin panel</a
       >
     </div>
     <a

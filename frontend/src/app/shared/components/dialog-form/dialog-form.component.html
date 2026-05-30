@@ -1,8 +1,11 @@
-<h2 mat-dialog-title>
-  <ng-container *ngIf="form.value.id">Edit</ng-container>
-  <ng-container *ngIf="!form.value.id">Create</ng-container>
+<h2 mat-dialog-title class="mx-8 mt-8 text-2xl text-blue-500">
+  <ng-container *ngIf="form.value.id" class="flex items-center"><mat-icon class="me-2">edit</mat-icon><span>Edit</span></ng-container>
+  <ng-container *ngIf="!form.value.id" class="flex items-center"><mat-icon class="me-2">save</mat-icon><span>Create</span></ng-container>
   {{ name }}
 </h2>
+<div class="mx-8">
+  <mat-divider></mat-divider>
+</div>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="form" novalidate class="mx-8">
     <ng-container *ngFor="let attr of attributes">
@@ -72,10 +75,13 @@
     </ng-container>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
+<div class="mx-8">
+  <mat-divider></mat-divider>
+</div>
+<mat-dialog-actions align="end" class="mx-8">
   <!-- Actions -->
-  <button mat-flat-button mat-dialog-close>Cancel</button>
-  <button (click)="confirm()" mat-flat-button cdkFocusInitial color="primary">
-    Confirm
+  <button mat-flat-button mat-dialog-close><mat-icon>cancel</mat-icon>Cancel</button>
+  <button (click)="confirm()" mat-flat-button cdkFocusInitial class="gradient-bg text-white">
+    <mat-icon>save</mat-icon>Confirm
   </button>
 </mat-dialog-actions>
