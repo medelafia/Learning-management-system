@@ -9,6 +9,14 @@
       <mat-icon class="text-white-500 me-1">account_circle</mat-icon>
       <p class="text-sm sm:text-base">{{ getUsername() }}</p>
   </div>
+  <a
+  *ngIf="authService.loggedIn()"
+  (click)="authService.logout()"
+  mat-button
+  class="text-white ms-4"
+  >
+  <mat-icon>logout</mat-icon>
+</a>
 
 </mat-toolbar>
 <mat-sidenav-container>
@@ -21,9 +29,9 @@
   >
     <mat-nav-list>
       <ng-container *ngFor="let item of items">
-        <a mat-list-item *ngIf="item !== '-'" [routerLink]="item.link">
+        <button mat-list-item *ngIf="item !== '-'" [routerLink]="item.link">
           {{ item.text }}
-        </a>
+        </button>
         <mat-divider *ngIf="item === '-'"></mat-divider>
       </ng-container>
     </mat-nav-list>

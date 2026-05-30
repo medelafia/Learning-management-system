@@ -1,4 +1,4 @@
-<mat-toolbar class="">
+<mat-toolbar class="mb-0">
   <mat-toolbar-row class="bg-blue-500 flex px-32 justify-between items-between text-sm text-white py-0">
     <div class="flex items-center"><mat-icon class="me-2">mail</mat-icon>Email : {{"abdelmalek.essadi@uae.ma"}}</div>
     <div class="flex items-center"><mat-icon class="me-2">phone</mat-icon>Phone : +212-658-045-721</div>
@@ -37,7 +37,7 @@
       routerLink="/auth/login"
       mat-button
       matButton="filled"
-      class="bg-blue-500 text-white"
+      class="gradient-bg text-white"
       matFab="rounded"
     >
       <mat-icon>login</mat-icon>
@@ -47,6 +47,7 @@
       *ngIf="authService.loggedIn()"
       (click)="authService.logout()"
       mat-button
+      class="gradient-bg text-white"
     >
       <mat-icon>logout</mat-icon>
       Logout
