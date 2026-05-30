@@ -90,7 +90,7 @@ export class AuthService {
           this.router.navigate([this.redirectUrl]);
           this.redirectUrl = undefined;
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }
       },
       error: () => {},
@@ -111,7 +111,7 @@ export class AuthService {
     this.user = null;
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   validateRoles(roles: any, method = 'any') {
