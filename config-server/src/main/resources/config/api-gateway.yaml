@@ -17,25 +17,25 @@ spring:
               - DELETE
       routes:
         - id: auth-service
-          uri: lb://AUTH-SERVICE
+          uri: http://api-gateway-service:8081
           predicates:
             - Path=/api/auth-service/**
           filters:
             - RewritePath=/api/auth-service/(?<path>.*), /$\{path}
         - id: faculty-service
-          uri: lb://FACULTY-SERVICE
+          uri: http://faculty-service:8082
           predicates:
             - Path=/api/faculty-service/**
           filters:
             - RewritePath=/api/faculty-service/(?<path>.*), /$\{path}
         - id: subject-service
-          uri: lb://SUBJECT-SERVICE
+          uri: http://subject-service:8083
           predicates:
             - Path=/api/subject-service/**
           filters:
             - RewritePath=/api/subject-service/(?<path>.*), /$\{path}
         - id: exam-service
-          uri: lb://EXAM-SERVICE
+          uri: http://exam-service:8084
           predicates:
             - Path=/api/exam-service/**
           filters:
