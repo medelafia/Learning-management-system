@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient("subject-service")
+@FeignClient(name="subject-service" )
 public interface SubjectFeignClient {
     @GetMapping("/subject-enrollments/subject/{id}/student-id/all")
     List<Long> getStudentIdsBySubjectId(@PathVariable Long id);

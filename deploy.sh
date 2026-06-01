@@ -30,6 +30,7 @@ kubectl create secret generic faculty-service-secret --from-env-file=./env-varia
 eval $(minikube docker-env)
 docker build -t config-service-container:latest ./config-server
 docker build -t api-gateway-container:latest ./api-gateway
+docker build -t discovery-service-container:latest ./discovery-service
 docker build -t auth-service-container:latest ./auth-service
 docker build -t exam-service-container:latest ./exam-service
 docker build -t faculty-service-container:latest ./faculty-service
