@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: host.docker.internal
+    hostname: ${EUREKA_HOST}
   client:
     service-url:
-      defaultZone: http://host.docker.internal:8761/eureka
+      defaultZone: http://${EUREKA_HOST}:8761/eureka

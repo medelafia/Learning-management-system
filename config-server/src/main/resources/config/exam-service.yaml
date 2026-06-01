@@ -10,9 +10,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3310/lms-exam?createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: jdbc:mysql://${EXAM_DB_HOST}:${EXAM_DB_PORT}/lms-exam?createDatabaseIfNotExist=true
+    username: ${EXAM_DB_USERNAME}
+    password: ${EXAM_DB_PASSWORD}
   jackson:
     default-property-inclusion: non_empty
 
@@ -22,13 +22,13 @@ springdoc:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${EUREKA_HOST}
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA_HOST}:8761/eureka
 
 token:
-  secret: GieJX^>%Pd;Z]#&?kmZY4SRZNlWsjr%JJiH!q9KM~,Zd./[oh*=dus&p_M3Ab#B
+  secret: ${SECRET_TOKEN}
 
 management:
   endpoints:

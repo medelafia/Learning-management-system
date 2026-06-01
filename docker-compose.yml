@@ -1,48 +1,172 @@
+# If you encounter problems while building images for services depending on databases, separately startup databases before running this.
+
 version: '3'
 
 services:
-  database-auth-dev:
+  database-auth:
     image: mysql:8.0.30-debian
-    ports: 
+    ports:
       - 3307:3306
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
+      interval: 25s
+      retries: 5
+      timeout: 10s
     volumes:
-      - auth-data-dev:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lms-auth
-
-  database-faculty-dev:
+      - auth-data:/var/lib/mysql
+    env_file: env-variables/.env.database_auth
+    networks:
+      - microservice-network
+  database-faculty:
     image: mysql:8.0.30-debian
-    ports: 
+    ports:
       - 3308:3306
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
+      interval: 25s
+      retries: 5
+      timeout: 10s
     volumes:
-      - faculty-data-dev:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lms-faculty
-
-  database-subject-dev:
+      - faculty-data:/var/lib/mysql
+    env_file: env-variables/.env.database_faculty
+    networks:
+      - microservice-network
+  database-subject:
     image: mysql:8.0.30-debian
-    ports: 
+    ports:
       - 3309:3306
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
+      interval: 25s
+      retries: 5
+      timeout: 10s
     volumes:
-      - subject-data-dev:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lms-subject
-
-  database-exam-dev:
+      - subject-data:/var/lib/mysql
+    env_file: env-variables/.env.database_subject
+    networks:
+      - microservice-network
+  database-exam:
     image: mysql:8.0.30-debian
-    ports: 
+    ports:
       - 3310:3306
     volumes:
-      - exam-data-dev:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lms-exam
+      - exam-data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
+      interval: 25s
+      retries: 5
+      timeout: 10s
+    env_file: env-variables/.env.database_exam
+    networks:
+      - microservice-network
+  backend-config-server:
+    build: ./config-server
+    ports:
+      - 8888:8888
+    healthcheck:
+      test: wget --spider --quiet 'http://localhost:8888/actuator/health/' || exit 1
+      interval: 25s
+      retries: 5
+      timeout: 10s
+    env_file: env-variables/.env.config_server
+    networks:
+      - microservice-network
+  backend-discovery-server:
+    build: ./discovery-server
+    ports:
+      - 8761:8761
+    healthcheck:
+      test: wget --spider --quiet 'http://localhost:8761/actuator/health/' || exit 1
+      interval: 25s
+      retries: 5
+      timeout: 10s
+    depends_on:
+      backend-config-server:
+        condition: service_healthy
+    env_file: env-variables/.env.discovery_service
+    networks:
+      - microservice-network
+  backend-api-gateway:
+    build: ./api-gateway
+    ports:
+      - 8080:8080
+    depends_on:
+      backend-discovery-server:
+        condition: service_healthy
+    env_file: env-variables/.env.api_gateway
+    networks:
+      - microservice-network
+  backend-auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    depends_on:
+      backend-discovery-server:
+        condition: service_healthy
+      database-auth:
+        condition: service_healthy
+    env_file: env-variables/.env.auth_service
+    networks:
+      - microservice-network
+  backend-faculty-service:
+    build:
+      context: ./faculty-service
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    depends_on:
+      backend-discovery-server:
+        condition: service_healthy
+      database-faculty:
+        condition: service_healthy
+    env_file: env-variables/.env.faculty_service
+    networks:
+      - microservice-network
+  backend-subject-service:
+    build:
+      context: ./subject-service
+      dockerfile: Dockerfile
+    ports:
+      - 8083:8083
+    depends_on:
+      backend-discovery-server:
+        condition: service_healthy
+      database-subject:
+        condition: service_healthy
+    env_file: env-variables/.env.subject_service
+    networks:
+      - microservice-network
+  backend-exam-service:
+    build:
+      context: ./exam-service
+      dockerfile: Dockerfile
+    ports:
+      - 8084:8084
+    depends_on:
+      backend-discovery-server:
+        condition: service_healthy
+      database-exam:
+        condition: service_healthy
+    env_file: env-variables/.env.exam_service
+    networks:
+      - microservice-network
+
+  #frontend-app:
+  #  build:
+  #    context: ./frontend
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - 80:80
+  #  environment:
+  #    PRODUCTION: true
 
 volumes:
-  auth-data-dev:
-  faculty-data-dev:
-  subject-data-dev:
-  exam-data-dev:
+  auth-data:
+  faculty-data:
+  subject-data:
+  exam-data:
+networks:
+  microservice-network:
+    driver: bridge

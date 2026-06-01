@@ -10,9 +10,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3307/lms-auth?createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: jdbc:mysql://${AUTH_DB_HOST}:${AUTH_DB_PORT}/lms-auth?createDatabaseIfNotExist=true
+    username: ${AUTH_DB_USERNAME}
+    password: ${AUTH_DB_PASSWORD}
   jackson:
     default-property-inclusion: non_empty
 
@@ -25,10 +25,10 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA_HOST}:8761/eureka
 
 token:
-  secret: GieJX^>%Pd;Z]#&?kmZY4SRZNlWsjr%JJiH!q9KM~,Zd./[oh*=dus&p_M3Ab#B
+  secret: ${SECRET_TOKEN}
   accessExpiration: 7200
   refreshExpiration: 86400
 
