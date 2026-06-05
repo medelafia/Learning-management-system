@@ -46,59 +46,95 @@ spec:
               protocol: TCP
           env: 
             - name: EUREKA_HOST
-              valueFrom: cofig-server-secret
-              key: EUREKA_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: EUREKA_HOST
             - name: AUTH_DB_HOST
-              valueFrom: auth-service-secret
-              key: AUTH_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: AUTH_DB_HOST
             - name: AUTH_DB_PORT
-              valueFrom: auth-service-secret
-              key: AUTH_DB_PORT
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: AUTH_DB_PORT
             - name: AUTH_DB_USERNAME
-              valueFrom: auth-service-secret
-              key: AUTH_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: AUTH_DB_USERNAME
             - name: AUTH_DB_PASSWORD
-              valueFrom: auth-service-secret
-              key: AUTH_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: AUTH_DB_PASSWORD
             - name: SECRET_TOKEN
-              valueFrom: auth-service-secret
-              key: SECRET_TOKEN
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: SECRET_TOKEN
             - name: EXAM_DB_HOST
-              valueFrom: auth-service-secret
-              key: EXAM_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: EXAM_DB_HOST
             - name: EXAM_DB_PORT
-              valueFrom: auth-service-secret
-              key: EXAM_DB_PORT 
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: EXAM_DB_PORT 
             - name: EXAM_DB_USERNAME
-              valueFrom: auth-service-secret
-              key: EXAM_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: EXAM_DB_USERNAME
             - name: EXAM_DB_PASSWORD
-              valueFrom: auth-service-secret
-              key: EXAM_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: EXAM_DB_PASSWORD
             - name: FACULTY_DB_HOST
-              valueFrom: config-server-secret
-              key: FACULTY_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: FACULTY_DB_HOST
             - name: FACULTY_DB_PORT
-              valueFrom: config-server-secret
-              key: FACULTY_DB_PORT
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: FACULTY_DB_PORT
             - name: FACULTY_DB_USERNAME
-              valueFrom: config-server-secret
-              key: FACULTY_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: FACULTY_DB_USERNAME
             - name: FACULTY_DB_PASSWORD
-              valueFrom: config-server-secret
-              key: FACULTY_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: FACULTY_DB_PASSWORD
             - name: SUBJECT_DB_HOST
-              valueFrom: config-server-secret
-              key: SUBJECT_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: SUBJECT_DB_HOST
             - name: SUBJECT_DB_PORT
-              valueFrom: config-server-secret
-              key: SUBJECT_DB_PORT
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: SUBJECT_DB_PORT
             - name: SUBJECT_DB_USERNAME
-              valueFrom: config-server-secret
-              key: SUBJECT_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: SUBJECT_DB_USERNAME
             - name: SUBJECT_DB_PASSWORD
-              valueFrom: config-server-secret
-              key: SUBJECT_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: config-server-secret
+                  key: SUBJECT_DB_PASSWORD
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

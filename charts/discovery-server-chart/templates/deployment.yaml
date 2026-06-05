@@ -46,8 +46,10 @@ spec:
               protocol: TCP
           env: 
             - name: CONFIG_SERVER_HOST
-              valueFrom: discovery-service-secret
-              key: CONFIG_SERVER_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: discovery-server-secret
+                  key: CONFIG_SERVER_HOST
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

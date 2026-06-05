@@ -5,6 +5,7 @@ metadata:
   labels:
     {{- include "api-gateway-chart.labels" . | nindent 4 }}
 spec:
+  
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -46,8 +47,10 @@ spec:
               protocol: TCP
           env: 
             - name: CONFIG_SERVER_HOST
-              valueFrom: api-gateway-secret
-              key: CONFIG_SERVER_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: api-gateway-secret
+                  key: CONFIG_SERVER_HOST
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
