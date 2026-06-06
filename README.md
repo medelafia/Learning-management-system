@@ -427,7 +427,7 @@ kubectl describe pod <pod-name> -n faculty-app
 
 ## 👨‍💻 Author
 
-This project demonstrates the deployment of a University Management System based on the microservices implementation developed by GitHub user **bojanzdelar**.
+This project demonstrates the deployment of a University Management System based on the microservices implementation developed by GitHub user **<a href="https://github.com/bojanzdelar">bojanzdelar</a>**.
 
 The deployment infrastructure was designed using:
 
