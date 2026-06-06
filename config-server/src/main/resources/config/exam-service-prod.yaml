@@ -1,7 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://${EXAM_DB_HOST}:${EXAM_DB_PORT}/lms-exam?createDatabaseIfNotExist=true
-
+    username: ${EXAM_DB_USERNAME}
+    password: ${EXAM_DB_PASSWORD}
 eureka:
   instance:
     hostname: ${EUREKA_HOST}

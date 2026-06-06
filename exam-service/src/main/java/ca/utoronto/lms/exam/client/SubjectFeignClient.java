@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Set;
 
-@FeignClient(name="subject-service")
+@FeignClient(name="subject-service", url="http://subject-service:8083")
 public interface SubjectFeignClient {
     @GetMapping("/subjects/{id}")
     List<SubjectDTO> getSubject(@PathVariable Set<Long> id);

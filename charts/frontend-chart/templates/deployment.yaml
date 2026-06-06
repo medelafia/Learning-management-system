@@ -44,7 +44,12 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-
+          env: 
+            - name: API_ENDPOINT
+              valueFrom:
+                configMapKeyRef: 
+                  name: frontend-configmap
+                  key: API_ENDPOINT
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

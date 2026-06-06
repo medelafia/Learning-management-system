@@ -1,4 +1,12 @@
+declare global {
+  interface Window {
+    env: {
+      API_ENDPOINT: string;
+    };
+  }
+}
+
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8080/api',
+  baseUrl: window['env'].API_ENDPOINT,
 };

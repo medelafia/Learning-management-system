@@ -51,6 +51,16 @@ spec:
                 secretKeyRef: 
                   name: api-gateway-secret
                   key: CONFIG_SERVER_HOST
+            - name: EUREKA_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: api-gateway-secret
+                  key: EUREKA_HOST
+            - name: SECRET_TOKEN
+              valueFrom: 
+                secretKeyRef: 
+                  name: api-gateway-secret
+                  key: SECRET_TOKEN
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

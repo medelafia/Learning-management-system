@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Set;
 
-@FeignClient(name="faculty-service")
+@FeignClient(name="faculty-service", url="http://faculty-service:8082")
 public interface FacultyFeignClient {
     @GetMapping("/faculties/{id}")
     List<FacultyDTO> getFaculty(@PathVariable Set<Long> id);

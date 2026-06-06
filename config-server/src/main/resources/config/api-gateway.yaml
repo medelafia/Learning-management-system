@@ -17,7 +17,7 @@ spring:
               - DELETE
       routes:
         - id: auth-service
-          uri: http://api-gateway-service:8081
+          uri: http://auth-service:8081
           predicates:
             - Path=/api/auth-service/**
           filters:

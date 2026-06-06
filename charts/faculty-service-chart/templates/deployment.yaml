@@ -50,6 +50,36 @@ spec:
                 secretKeyRef: 
                   name: faculty-service-secret
                   key: CONFIG_SERVER_HOST
+            - name: EUREKA_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: faculty-service-secret
+                  key: EUREKA_HOST
+            - name: SECRET_TOKEN
+              valueFrom: 
+                secretKeyRef: 
+                  name: faculty-service-secret
+                  key: SECRET_TOKEN
+            - name: FACULTY_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: faculty-service-secret
+                  key: FACULTY_DB_HOST
+            - name: FACULTY_DB_PORT
+              valueFrom: 
+                secretKeyRef: 
+                  name: faculty-service-secret
+                  key: FACULTY_DB_PORT
+            - name: FACULTY_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: faculty-service-secret
+                  key: FACULTY_DB_USERNAME
+            - name: FACULTY_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: faculty-service-secret
+                  key: FACULTY_DB_PASSWORD
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

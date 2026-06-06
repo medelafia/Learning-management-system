@@ -50,6 +50,36 @@ spec:
                 secretKeyRef: 
                   name: exam-service-secret
                   key: CONFIG_SERVER_HOST
+            - name: EUREKA_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: exam-service-secret
+                  key: EUREKA_HOST
+            - name: SECRET_TOKEN
+              valueFrom: 
+                secretKeyRef: 
+                  name: exam-service-secret
+                  key: SECRET_TOKEN
+            - name: EXAM_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: exam-service-secret
+                  key: EXAM_DB_HOST
+            - name: EXAM_DB_PORT
+              valueFrom: 
+                secretKeyRef: 
+                  name: exam-service-secret
+                  key: EXAM_DB_PORT 
+            - name: EXAM_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: exam-service-secret
+                  key: EXAM_DB_USERNAME
+            - name: EXAM_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: exam-service-secret
+                  key: EXAM_DB_PASSWORD
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}

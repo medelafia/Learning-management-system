@@ -1,7 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://${SUBJECT_DB_HOST}:${SUBJECT_DB_PORT}/lms-subject?createDatabaseIfNotExist=true
-
+    username: ${SUBJECT_DB_USERNAME}
+    password: ${SUBJECT_DB_PASSWORD}
 eureka:
   instance:
     hostname: ${EUREKA_HOST}

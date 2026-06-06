@@ -50,7 +50,37 @@ spec:
                 secretKeyRef: 
                   name: auth-service-secret
                   key: CONFIG_SERVER_HOST
-                
+            - name: EUREKA_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: auth-service-secret
+                  key: EUREKA_HOST
+            - name: AUTH_DB_HOST
+              valueFrom: 
+                secretKeyRef: 
+                  name: auth-service-secret
+                  key: AUTH_DB_HOST
+            - name: AUTH_DB_PORT
+              valueFrom: 
+                secretKeyRef: 
+                  name: auth-service-secret
+                  key: AUTH_DB_PORT
+            - name: AUTH_DB_USERNAME
+              valueFrom: 
+                secretKeyRef: 
+                  name: auth-service-secret
+                  key: AUTH_DB_USERNAME
+            - name: AUTH_DB_PASSWORD
+              valueFrom: 
+                secretKeyRef: 
+                  name: auth-service-secret
+                  key: AUTH_DB_PASSWORD
+            - name: SECRET_TOKEN
+              valueFrom: 
+                secretKeyRef: 
+                  name: auth-service-secret
+                  key: SECRET_TOKEN
+            
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
